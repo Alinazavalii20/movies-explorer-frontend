@@ -41,6 +41,7 @@ function Register() {
               placeholder="Пароль"
               required
             />
+            <span id="password-error" className="input-error password-input-error" />
 
             <button
               className="register__button"

@@ -15,7 +15,6 @@ function Register() {
         </div>
         
         <form className="login__form">
-
             <p className="login__name">E-mail</p>
             <input
               type="email"
@@ -33,6 +32,8 @@ function Register() {
               placeholder="Пароль"
               required
             />
+
+            <span id="password-error" className="input-error password-input-error" />
 
             <button
               className="login__button"

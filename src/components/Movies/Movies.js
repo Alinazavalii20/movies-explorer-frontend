@@ -8,7 +8,6 @@ import movies from "../../utils/Movies";
 function Movies() {
     return(
         <section className="movies">
-            
             <SearchForm />
             <MoviesCardList 
               movies={movies}

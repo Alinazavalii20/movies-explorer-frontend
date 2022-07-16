@@ -1,6 +1,7 @@
 .header__navigation{
     display: flex;
     justify-content: flex-start;
+    background-color: #FFFFFF;
 }
 
 .navigation__menu{
@@ -111,6 +112,12 @@
 }
 
 @media screen and (max-width: 768px) {
+    .header__navigation{
+        align-items: center;
+        margin-left: 626px;
+        
+    }
+
     .navigation__menu{
         display: flex;
     }
@@ -128,7 +135,7 @@
         top: 0;
         right: 0;
         background-color: rgba(0, 0, 0, .3);
-        z-index: 2;
+        z-index: 100;
         justify-content: flex-end;
     }
 
@@ -207,6 +214,11 @@
 }
 
 @media screen and (max-width: 320px) {
+    .header__navigation{
+        margin-left: 214px;
+        
+    }
+
     .navigation__container_visible{
         max-width: 320px;
         top: 0;
