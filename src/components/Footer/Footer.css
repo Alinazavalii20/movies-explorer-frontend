@@ -1,6 +1,5 @@
 .footer{
     margin: 79px 70px 20px;
-    max-width: 1280px;
 }
 
 .footer__text{
@@ -23,7 +22,7 @@
     font-weight: 400;
     font-size: 13px;
     line-height: 16px;
-    margin: 20px 829px 0 0 ;
+    margin: 20px 820px 0 0 ;
 }
 
 .footer__list-link{
@@ -48,7 +47,7 @@
     padding-right: 0px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
     .footer{
         margin: 79px 30px 20px;
     }
@@ -58,7 +57,7 @@
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 450px) {
     .footer{
         margin: 79px 10px 10px; 
     }

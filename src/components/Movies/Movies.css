@@ -5,15 +5,16 @@
     font-family: 'Inter', Arial, Helvetica, sans-serif;
     font-style: normal;
     margin: 0 auto;
+    padding: 0;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
     .movies{
         grid-template-columns: repeat(1, 768px);
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 450px) {
     .movies{
         grid-template-columns: repeat(1, 320px);
     }

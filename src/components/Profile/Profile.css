@@ -111,7 +111,7 @@
     opacity: .6;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
     .profile__form{
         padding: 236px 30px 269px;
     }
@@ -121,7 +121,7 @@
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 450px) {
     .profile__form{
         padding: 70px 0 40px;
     }

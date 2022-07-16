@@ -39,14 +39,14 @@
     cursor: pointer;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
     .error{
         padding: 408px 184px 222px;
     }
 
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 450px) {
     .error{
         padding: 329px 10px 30px;
     }

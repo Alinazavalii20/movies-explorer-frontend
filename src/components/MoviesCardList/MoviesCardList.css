@@ -7,7 +7,7 @@
     padding: 70px 70px 10px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
     .movies__list{
         grid-template-columns: repeat(2, 342px);
         grid-column-gap: 24px;
@@ -17,9 +17,9 @@
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 450px) {
     .movies__list{
-        grid-template-columns: repeat(1, 300px);
+        grid-template-columns: repeat(1, 299px);
         grid-column-gap: 0;
         grid-template-rows: repeat(12, 271px);
         grid-row-gap: 16px;

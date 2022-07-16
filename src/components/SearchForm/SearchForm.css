@@ -46,6 +46,7 @@
    text-align: center;
    color: #FFFFFF;
    margin-left: 10px;
+   padding: 0;
 }
 
 .search__button:hover{
@@ -110,7 +111,7 @@
     font-style: normal;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
     .search{
         margin: 80px 30px 10px;
     }
@@ -120,7 +121,7 @@
     } 
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 450px) {
     .search{
         margin: 81px 14px 10px;
     }

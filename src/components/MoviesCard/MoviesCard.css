@@ -79,7 +79,7 @@
     line-height: 13px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
     .movie__title{
         margin-left: 12px;
     }
@@ -94,7 +94,7 @@
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 450px) {
     .movie__title{
         margin-left: 14px;
         font-size: 12px;

@@ -88,7 +88,7 @@
     color: #A0A0A0;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
     .aboutproject{
         padding: 90px 50px;
     }
@@ -124,7 +124,7 @@
     
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 450px) {
     .aboutproject{
         padding: 70px 18px;
     }
@@ -137,7 +137,7 @@
 
     .aboutproject__description{
         margin: 50px 0 93px;
-        width: 667px;
+        width: 284px;
         grid-template-columns: repeat(1, 284px);
         grid-template-rows: repeat(2, 108px);
         grid-row-gap: 56px;

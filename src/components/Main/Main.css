@@ -7,13 +7,13 @@
     margin: 0 auto;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
     .main{
         grid-template-columns: repeat(1, 768px);
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 450px) {
     .main{
         grid-template-columns: repeat(1, 320px);
     }
