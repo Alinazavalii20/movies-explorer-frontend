@@ -1,0 +1,125 @@
+.promo{
+    max-width: 1280px;
+    background-color: rgba(7, 48, 66, 1);
+    color: rgba(255, 255, 255, 1);
+    padding: 75px 70px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content:flex-start;
+    background-image: url(../../images/logo_2.svg);
+    background-repeat: no-repeat;
+    background-position: right 70px top 75px;
+    background-size: 310px 304px;
+}
+
+.promo__logo{
+    margin-left: 190px;
+    width: 310px;
+    height: 304px;
+}
+
+.promo__text{
+    margin: 0;
+    padding: 0;
+}
+
+.promo__title{
+    text-align: left;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+    width: 640px;
+}
+
+.promo__subtitle{
+    width: 310px;
+    height: 32px;
+    margin-top: 36px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    mix-blend-mode: normal;
+    opacity: 0.5;
+}
+
+.promo__button{
+    margin-top: 156px;
+    width: 129px;
+    height: 36px;
+    background-color: transparent;
+    opacity: 0.6;
+    border: 1px solid #FFFFFF;
+    border-radius: 3px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    align-items: center;
+    color: #FFFFFF;
+}
+
+.promo__button:hover{
+    cursor: pointer;
+    opacity: .4;
+}
+
+.promo__button_link{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+    .promo{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 492px 0 76px;
+        background-position: left 229px top 140px;
+    }
+    
+    .promo__title{
+        margin: 0 44px;
+        font-size: 40px;
+        line-height: 50px;
+        width: 680px;
+        text-align: center;
+    }
+
+    .promo__subtitle{
+        width: 260px;
+        height: 32px;
+        margin: 22px 254px 92px;
+        font-size: 13px;
+        line-height: 16px;
+        text-align: center;
+    }
+
+    .promo__button{
+        margin: 0 319px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .promo{
+        padding: 320px 0 30px;
+        background-position: left 55px top 70px;
+        background-size: 210px 206px;
+    }
+
+    .promo__title{
+        margin: 0 10px;
+        font-size: 30px;
+        line-height: 38px;
+        width: 300px;
+    }
+
+    .promo__subtitle{
+        width: 260px;
+        margin: 24px 30px 80px;
+        font-size: 12px;
+    }
+
+    .promo__button{
+        margin: 0 95px;
+    }
+}

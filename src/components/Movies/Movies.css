@@ -1,0 +1,20 @@
+.movies{
+    max-width: 1280px;
+    display: grid;
+    grid-template-columns: repeat(1, 1280px);
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-style: normal;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+    .movies{
+        grid-template-columns: repeat(1, 768px);
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .movies{
+        grid-template-columns: repeat(1, 320px);
+    }
+}

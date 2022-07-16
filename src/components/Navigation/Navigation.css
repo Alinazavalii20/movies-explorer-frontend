@@ -1,0 +1,242 @@
+.header__navigation{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.navigation__menu{
+    display: none;
+    margin-left: auto;
+    padding: 0;
+    width: 40px;
+    height: 43px;
+    outline: none;
+    border: none;
+    background: transparent url('../../images/popup.svg') center center / cover no-repeat;
+    transition: opacity .2s linear;
+}
+.navigation__container{
+    display: flex;
+}
+  
+.navigation__menu:hover{
+    opacity: .6;
+    cursor: pointer;
+}
+
+.navigation__menu-close{
+    display: none;
+    margin: 0;
+    padding: 0;
+    width: 22px;
+    height: 22px;
+    outline: none;
+    border: none;
+    background: transparent url('../../images/close_menu.png') center center / 32px no-repeat;
+    align-self: flex-end;
+}
+
+.navigation__menu-close{
+    opacity: .6;
+    cursor: pointer;
+}
+
+.navigation__menu-list{
+    display: flex;
+    flex-direction: row;
+}
+
+.navigation__main{
+    display: none;
+}
+
+.navigation__movies{
+    margin: 28px 44px;
+    margin-right: 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18px;
+    text-align: right;
+}
+
+.nav__movies{
+    text-decoration: none;
+    color: #000000;
+}
+
+.nav__movies_all{
+    margin-right: 16px;
+}
+
+.nav__movies_all:hover{
+    opacity: .6;
+    cursor: pointer;
+}
+
+.account{
+    margin-left: 746px;
+    display: flex;
+}
+
+.acount_link{
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.acount__title{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    margin-right: 17px;
+    margin-top: 28px;  
+}
+
+.account__icon{
+    width: 26px;
+    height: 30px;
+    background: #F9F9F9;
+    border-radius: 4px;
+    border: none;
+    margin-top: 21px;
+    background-image: url(../../images/account.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.account__icon:hover{
+    opacity: .6;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .navigation__menu{
+        display: flex;
+    }
+    
+    .navigation__container{
+        display: none;
+    }
+    
+    .navigation__container_visible{
+        display: flex;
+        position: fixed;
+        visibility: visible;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, .3);
+        z-index: 2;
+        justify-content: flex-end;
+    }
+
+    .navigation__menu-close{
+        display: flex;
+        position: relative;
+        left: 466px;
+        top: 22px;
+    }
+
+    .navigation__container-list {
+        width: 520px;
+        background-color: #FFFFFF;
+    }
+
+    .navigation__menu-list{
+        display: flex;
+        flex-direction: column;
+        margin: 106px auto 0;
+        align-items: center;
+    }
+
+    .navigation__movies{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 22px;
+        align-items: center;
+        margin: 0;
+    }
+
+    .navigation__main{
+        display: flex;
+        text-decoration: none;
+        color: #000000;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 22px;
+        margin-bottom: 28px;
+    }
+
+    .nav__movies_all{
+        margin: 0;
+        margin-bottom: 28px;
+    }
+
+    .account{
+        margin-left: 0;
+        margin-top: 621px;
+        width: 100px;
+    }
+
+    .acount_link{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 30px;
+    }
+
+    .acount__title{
+        color: #000000;
+        margin: 0;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 16px;
+        text-align: center;
+        margin-right: 17px;
+    }
+
+    .account__icon{
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .navigation__container_visible{
+        max-width: 320px;
+        top: 0;
+        right: 0;
+        z-index: 2;
+        justify-content: flex-end;
+    }
+
+    .navigation__container-list {
+        width: 320px;
+    }
+
+    .navigation__menu-close{
+        left: 276px;
+        top: 14px;
+    }
+
+    .navigation__menu-list{
+        margin-top: 100px;
+    }
+
+    .navigation__main{
+        margin-bottom: 24px;
+    }
+
+    .nav__movies_all{
+        margin-bottom: 24px;
+    }
+
+    .account{
+        margin-top: 444px;
+    }
+}

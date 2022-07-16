@@ -1,0 +1,155 @@
+.aboutproject{
+    padding: 110px 70px;
+    color: #000000;
+}
+
+.aboutproject__title{
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 27px;
+    letter-spacing: -0.04em;
+    padding-bottom: 23px;
+    border-bottom: 1px solid #000000;
+    margin: 0;
+}
+
+.aboutproject__description{
+   margin: 70px 0 110px;
+   width: 1140px;
+   display: grid;
+   grid-template-columns: repeat(2, 550px);
+   grid-template-rows: repeat(1, 90px);
+   grid-column-gap: 40px;
+}
+
+.aboutproject__diplom{
+    margin: 0;
+}
+
+.aboutproject__diplom_title{
+    height: 24px;
+    margin: 0;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.04em;
+    color: #000000; 
+}
+
+.aboutproject__diplom_subtitle{
+    margin: 0;
+    margin-top: 26px;
+    height: 40px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.aboutproject__time{
+    display: flex;
+    text-align: center;
+}
+
+.aboutproject__time_backend{
+   width: 228px;
+}
+
+.aboutproject__time_frontend{
+   width: 912px;
+}
+
+.aboutproject__time_week{
+    display: flex;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.aboutproject__time_week-back{
+    background-color: #2BE080;
+    height: 36px;
+    
+}
+
+.aboutproject__time_week-front{
+    background-color: #F2F2F2;
+    height: 36px;
+}
+
+.aboutproject__time_title{
+    margin-top: 14px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #A0A0A0;
+}
+
+@media screen and (max-width: 768px) {
+    .aboutproject{
+        padding: 90px 50px;
+    }
+
+    .aboutproject__title{
+        font-size: 22px;
+        line-height: 27px;
+        width: 668px;
+        margin: 0;
+    }
+
+    .aboutproject__description{
+        margin: 50px 0 93px;
+        width: 667px;
+        grid-template-columns: repeat(2, 319px);
+        grid-template-rows: repeat(1, 124px);
+        grid-column-gap: 30px;
+    }
+
+     .aboutproject__diplom_title{
+        height: 48px;
+        font-size: 20px;
+        line-height: 24px; 
+    }
+
+    .aboutproject__diplom_subtitle{
+        margin: 0;
+        margin-top: 22px;
+        height: 54px;
+        font-size: 12px;
+        line-height: 18px;
+    }
+    
+}
+
+@media screen and (max-width: 320px) {
+    .aboutproject{
+        padding: 70px 18px;
+    }
+
+    .aboutproject__title{
+        font-size: 18px;
+        line-height: 22px;
+        width: 284px;
+    }
+
+    .aboutproject__description{
+        margin: 50px 0 93px;
+        width: 667px;
+        grid-template-columns: repeat(1, 284px);
+        grid-template-rows: repeat(2, 108px);
+        grid-row-gap: 56px;
+    }
+
+    .aboutproject__time_week{
+        font-size: 11px;
+        line-height: 13px;
+    }
+
+    .aboutproject__time_title{
+        font-size: 11px;
+        line-height: 13px;
+    }
+}
