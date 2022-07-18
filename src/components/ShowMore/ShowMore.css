@@ -1,0 +1,29 @@
+.show-more {
+    margin: 50px auto 80px;
+    text-align: center;
+}
+
+.show-more__button {
+    width: 320px;
+    height: 36px;
+    border: none;
+    background-color: #F9F9F9;;
+    padding: 11px 0 9px;
+    border-radius: 6px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.show-more__button:hover{
+    opacity: .6;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 450px) {
+    .show-more__button {
+        width: 240px;
+        height: 36px;
+    }  
+}
