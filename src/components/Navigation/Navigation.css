@@ -1,7 +1,5 @@
 .header__navigation{
-    display: flex;
-    justify-content: flex-start;
-    background-color: #FFFFFF;
+    width: 93%;
 }
 
 .navigation__menu {
@@ -12,7 +10,7 @@
     height: 43px;
     outline: none;
     border: none;
-    background: transparent url('../../images/popup.svg') center center / cover no-repeat;
+    background: transparent url('../../images/menu-burger.svg') center center / cover no-repeat;
     transition: opacity .2s linear;
   }
   
@@ -23,13 +21,14 @@
   
   .navigation__sidebar {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    justify-content: space-between;
+    align-items:center;
   }
   
   .navigation__container-list{
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
   }
   
   .navigation__close{
@@ -40,7 +39,7 @@
     height: 22px;
     outline: none;
     border: none;
-    background: transparent url('../../images/close_menu.png') center center / 32px no-repeat;
+    background: transparent url('../../images/close_menu.svg') center center / 32px no-repeat;
     align-self: flex-end;
     transition: opacity .2s linear;
   }
@@ -56,11 +55,14 @@
     justify-content: flex-start;
     padding: 0;
     list-style: none;
-    margin-right: 746px;
   }
   
   .navigation__list-item {
-    margin: 0 17px 0 0;
+    margin: 0 0 17px 0;
+  }
+
+  .navigation__list-item:nth-child(2) {
+    margin-right: 17px;
   }
   
   .navigation__list-item_type_main {
@@ -84,7 +86,6 @@
   .navigation__link_type_profile {
     display: grid;
     grid-template-columns: 57px 26px;
-    justify-content: center;
     align-items: center;
     width: 100px;
     height: 30px;
@@ -99,13 +100,13 @@
   }
 
   .account__icon{
-    background: url('../../images/account.png') no-repeat center #F9F9F9;;
+    background: url('../../images/account.svg') no-repeat center #F9F9F9;;
     border-radius: 4px;
     border: none;
     width: 26px;
     height: 30px;
-    margin-left: 17px;
     cursor: pointer;
+    margin-left: 17px;
   }
   
   @media screen and (max-width: 800px) {
@@ -172,6 +173,7 @@
   
     .navigation__link_type_profile {
       font-size: 14px;
+      margin-top: 621px;
     }
   }
   
@@ -186,5 +188,10 @@
   
     .navigation__list-item {
       margin: 0 0 20px;
+    }
+
+    .navigation__link_type_profile {
+      font-size: 14px;
+      margin-top: 444px;
     }
   }

@@ -31,10 +31,11 @@
     border: none;
     height: 29px;
     width: 100px;
-    background-image: url(../../images/icon__delete.png);
+    background-image: url(../../images/icon__delete.svg);
     background-repeat: no-repeat;
     background-size: 7px;
     background-position: center;
+    cursor: pointer;
 }
 
 .movie__button_save{
@@ -45,7 +46,7 @@
     text-align: center;
     height: 29px;
     width: 100px;
-   
+    cursor: pointer;
 }
 
 .movie__button_save-active{
@@ -54,16 +55,16 @@
     border: none;
     height: 29px;
     width: 100px;
-    background-image: url(../../images/icon__save.png);
+    background-image: url(../../images/icon__save.svg);
     background-repeat: no-repeat;
     background-size: 8px;
     background-position: center;
     color: rgba(0, 0, 0, 0);
+    cursor: pointer;
 }
   
 .movie__button:hover {
     opacity: .6;
-    cursor: pointer;
 }
   
 .movie__image{

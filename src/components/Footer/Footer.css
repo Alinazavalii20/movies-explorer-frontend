@@ -1,4 +1,6 @@
 .footer{
+    display: flex;
+    flex-direction: column;
     margin: 79px 70px 20px;
 }
 
@@ -15,14 +17,14 @@
 
 .footer__container{
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
 }
 
 .footer__copyright{
     font-weight: 400;
     font-size: 13px;
     line-height: 16px;
-    margin: 20px 820px 0 0 ;
+    margin: 20px 0 0 ;
 }
 
 .footer__list-link{
@@ -51,13 +53,9 @@
     .footer{
         margin: 79px 30px 20px;
     }
-
-    .footer__copyright{
-        margin-right: 397px;
-    }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 500px) {
     .footer{
         margin: 79px 10px 10px; 
     }

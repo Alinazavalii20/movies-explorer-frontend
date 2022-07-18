@@ -1,16 +1,15 @@
 .register {
-  max-width: 1280px;
+  max-width: 396px;
   display: flex;
   flex-direction: column;
   align-items: left;
   font-family: 'Inter';
-  margin-top: 70px;
+  margin: 70px auto;
 }
 
 .register__header{
   display: flex;
   flex-direction: column;
-  margin-left: 442px;
 }
 
 .register__title{
@@ -132,10 +131,6 @@
     margin-top: 232px;
   }
 
-  .register__header{
-    margin-left: 186px;
-  }
-
   .register__signin{
     margin-bottom: 232px;
   }
@@ -149,7 +144,6 @@
   }
 
   .register__header{
-    margin-left: 0;
     justify-content: center;
     align-items: center;
   }

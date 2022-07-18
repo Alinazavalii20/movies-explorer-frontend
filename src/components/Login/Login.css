@@ -1,23 +1,24 @@
 .login {
-  max-width: 1280px;
+  max-width: 396px;
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  align-items: left;
   font-family: 'Inter';
-  margin-top: 70px;
+  margin: 70px auto;
 }
 
 .login__header{
   display: flex;
   flex-direction: column;
-  margin-left: 442px;
 }
 
 .login__title{
+  width: 100%;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
   line-height: 29px;
+  text-align: left;
   margin: 40px 0;
 }
 
@@ -132,10 +133,6 @@
     margin-top: 232px;
   }
   
-  .login__header{
-     margin-left: 186px;
-  }
-  
   .login__signin{
     margin-bottom: 232px;
   }
@@ -149,7 +146,6 @@
   }
   
   .login__header{
-    margin-left: 0;
     justify-content: center;
     align-items: center;
   }

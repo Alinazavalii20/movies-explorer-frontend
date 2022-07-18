@@ -15,9 +15,9 @@
 
 .aboutproject__description{
    margin: 70px 0 110px;
-   width: 1140px;
+   max-width: 1140px;
    display: grid;
-   grid-template-columns: repeat(2, 550px);
+   grid-template-columns: repeat(2, minmax(284px, 550px));
    grid-template-rows: repeat(1, 90px);
    grid-column-gap: 40px;
 }
@@ -96,14 +96,11 @@
     .aboutproject__title{
         font-size: 22px;
         line-height: 27px;
-        width: 668px;
         margin: 0;
     }
 
     .aboutproject__description{
         margin: 50px 0 93px;
-        width: 667px;
-        grid-template-columns: repeat(2, 319px);
         grid-template-rows: repeat(1, 124px);
         grid-column-gap: 30px;
     }
@@ -124,7 +121,7 @@
     
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 650px) {
     .aboutproject{
         padding: 70px 18px;
     }
@@ -132,7 +129,13 @@
     .aboutproject__title{
         font-size: 18px;
         line-height: 22px;
-        width: 284px;
+    }
+
+    .aboutproject__diplom_subtitle{
+        margin-top: 16px;
+        font-weight: 400;
+        font-size: 11px;
+        line-height: 16px
     }
 
     .aboutproject__description{

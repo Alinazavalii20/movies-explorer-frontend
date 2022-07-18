@@ -1,22 +1,16 @@
 .promo{
     max-width: 1280px;
+    min-width: 320px;
     background-color: rgba(7, 48, 66, 1);
     color: rgba(255, 255, 255, 1);
     padding: 75px 70px;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     align-content:flex-start;
     background-image: url(../../images/logo_2.svg);
     background-repeat: no-repeat;
     background-position: right 70px top 75px;
     background-size: 310px 304px;
-}
-
-.promo__logo{
-    margin-left: 190px;
-    width: 310px;
-    height: 304px;
 }
 
 .promo__text{
@@ -29,7 +23,7 @@
     font-weight: 400;
     font-size: 50px;
     line-height: 58px;
-    width: 640px;
+    max-width: 640px;
 }
 
 .promo__subtitle{
@@ -74,14 +68,14 @@
         justify-content: center;
         align-items: center;
         padding: 492px 0 76px;
-        background-position: left 229px top 140px;
+        background-position: center top 140px;
     }
     
     .promo__title{
         margin: 0 44px;
         font-size: 40px;
         line-height: 50px;
-        width: 680px;
+        max-width: 680px;
         text-align: center;
     }
 
@@ -99,10 +93,11 @@
     }
 }
 
-@media screen and (max-width: 450px) {
+
+@media screen and (max-width: 500px) {
     .promo{
         padding: 320px 0 30px;
-        background-position: left 55px top 70px;
+        background-position: center top 70px;
         background-size: 210px 206px;
     }
 
@@ -110,7 +105,7 @@
         margin: 0 10px;
         font-size: 30px;
         line-height: 38px;
-        width: 300px;
+        max-width: 300px;
     }
 
     .promo__subtitle{
