@@ -28,4 +28,5 @@
   npm run build сборка проекта
 
 **Публичный IPv4**   51.250.30.128
+
 **Frontend** https://alina.movies.nomoreparties.sbs/
