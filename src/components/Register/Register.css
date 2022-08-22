@@ -1,0 +1,175 @@
+.register {
+  max-width: 396px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  font-family: 'Inter';
+  margin: 70px auto;
+}
+
+.register__header{
+  display: flex;
+  flex-direction: column;
+}
+
+.register__title{
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  margin: 40px 0;
+}
+
+.register__logo{
+  width: 38px;
+  height: 38px;
+}
+
+.link__main:hover{
+  cursor: pointer;
+  opacity: .6;
+}
+
+.register__name{
+  margin: 0 0 10px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A0A0A0;
+}
+  
+.register__form{
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 396px;
+}
+  
+.register__input{
+  background: #F9F9F9;
+  border-radius: 8px;
+  width: 366px;
+  border: none;
+  padding: 15px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  margin-bottom: 20px;
+}
+
+.register__input:last-of-type{
+  margin-bottom: 22px;
+}
+
+.register__button{
+  width: 100%;
+  height: 45px;
+  border: none;
+  background: #3456F3;
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #FFFFFF;
+  margin-top: 69px;
+  margin-bottom: 16px;
+}
+  
+.register__button:hover{
+  cursor: pointer;
+  opacity: 0.85;
+}
+  
+.register__signin{
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: 358px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #A0A0A0;
+  margin-bottom: 70px;
+}
+
+.register__login-link{
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #3456F3;
+  margin-left: 6px;
+}
+  
+.register__login-link:hover{
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.input_error{
+  visibility: hidden;
+  color: #FF3055;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px; 
+  padding: 0;
+  width: 100%;
+}
+
+.input-error_activ{
+  visibility: visible;
+}
+
+@media screen and (max-width: 800px) {
+  .register{
+    margin-top: 232px;
+  }
+
+  .register__signin{
+    margin-bottom: 232px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .register{
+    margin-top: 56px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .register__header{
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .register__title{
+    margin-top: 50px;
+  }
+
+  .register__form{
+    width: 260px;
+  }
+
+  .register__input{
+    width: 245px;
+    margin-bottom: 20px;
+  }
+
+  .register__signin{
+    width: 188px;
+    margin-bottom: 30px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .register__login-link{
+    font-size: 12px;
+    line-height: 15px
+  }
+}
