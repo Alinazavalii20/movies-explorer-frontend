@@ -1,5 +1,7 @@
 # Проект: Movies
 
+Pull requests https://github.com/Alinazavalii20/movies-explorer-frontend/pull/2
+
 Проект на GitHub Pages https://alinazavalii20.github.io/movies-explorer-frontend/
 
 ### Функциональность проекта.
