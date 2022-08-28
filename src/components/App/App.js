@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 
@@ -26,6 +26,24 @@ function App() {
 
   const navigate = useNavigate();
 
+  //-------------Profile------------------------------------
+  
+  /* useEffect(() =>{
+    getUserInfo()
+  }, []);
+
+  function getUserInfo() {
+    mainApi.getUserInfo()
+      .then((data) => {
+        setCurrentUser(data);
+        setIsLoggedIn(true)
+      })
+      .catch((err) => console.log("ошибка получения данных: " + err))
+      .finally(() => {
+        setIsLoggedIn(false)
+      })
+  } */
+
 //--------------Auth and register-------------------------
 
   function onRegister(formData) {
@@ -44,43 +62,50 @@ function App() {
       .then(({ token }) => {
         if (token) {
           localStorage.setItem("jwt", token);
-          navigate('/movies');
-          setIsLoggedIn(true);
         }
+        setIsLoggedIn(true);
         navigate('/movies');
       })
       .catch((err) => {console.log(`${err}`)})
   }
 
-  function onSignOut() {
-    localStorage.removeItem("jwt");
-    setIsLoggedIn(false);
-    localStorage.removeItem('movies');
-    localStorage.removeItem('filmsTumbler');
-    localStorage.removeItem('filmsInputSearch');
-    localStorage.removeItem('savedFilms');
-    localStorage.removeItem('savedFilmsTumbler');
-    localStorage.removeItem('savedFilmsInputSearch');
-    navigate("/");
-  }
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleTokenCheck = () => {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      auth
+        .checkToken(token)
+        .then((data) => {
+          if (data) {
+            setCurrentUser(data.user);
+            setIsLoggedIn(true);
+            
+            navigate('/movies');
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          localStorage.removeItem("jwt");
+        });
+    }
+  };
+   
   //-------------Profile------------------------------------
-
-  useEffect(() =>{
-    getUserInfo()
-  }, []);
-
-  function getUserInfo() {
-    mainApi.getUserInfo()
-      .then((data) => {
-        setCurrentUser(data);
-        setIsLoggedIn(true)
+  useEffect(() => {
+    if(isLoggedIn) {
+      Promise.all([mainApi.getUserInfo()])
+      .then(([user]) => {
+        setCurrentUser(user);
+        //console.log(user);
       })
-      .catch((err) => console.log("ошибка получения данных: " + err))
-      .finally(() => {
-        setIsLoggedIn(false)
-      })
-  }
+      .catch((err) => console.log("ошибка получения данных: " + err));
+    }
+  }, [isLoggedIn]);
+
+  useCallback(() => {
+    handleTokenCheck()
+  }, [handleTokenCheck]);
+
 
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
@@ -98,6 +123,19 @@ function App() {
     }
   }, []);
 
+  function onSignOut() {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    setCurrentUser("");
+    localStorage.removeItem('movies');
+    localStorage.removeItem('filmsTumbler');
+    localStorage.removeItem('filmsInputSearch');
+    localStorage.removeItem('savedFilms');
+    localStorage.removeItem('savedFilmsTumbler');
+    localStorage.removeItem('savedFilmsInputSearch');
+    navigate("/");
+  }
+  
   return (
     <CurrentUserContext.Provider value={currentUser}>
     <div className="page">

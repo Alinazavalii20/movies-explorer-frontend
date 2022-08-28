@@ -59,7 +59,7 @@ function Profile({onSignOut}) {
                     <div className="profile__area profile__area_type_name">
                         <input 
                         className="profile__info" 
-                        value={name} 
+                        value={name ? name : ''} 
                         onChange={handleNameChange}
                         required />
                     </div>
@@ -67,7 +67,7 @@ function Profile({onSignOut}) {
                     <div className="profile__area profile__area_type_email">
                         <input 
                         className="profile__info" 
-                        value={email} 
+                        value={email ? email : ''} 
                         onChange={handleEmailChange}
                         required />
                     </div>

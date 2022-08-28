@@ -19,6 +19,7 @@ function SavedMovies() {
 
     if (tumbler) {
       setFilmsShowedWithTumbler(filmsShowed);
+      setFilmsInputSearch(movies)
       setFilmsWithTumbler(movies);
       filterDataShowed = filmsShowed.filter(({ duration }) => duration <= 40);
       filterData = movies.filter(({ duration }) => duration <= 40);
