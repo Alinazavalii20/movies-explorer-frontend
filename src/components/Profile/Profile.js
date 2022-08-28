@@ -16,7 +16,7 @@ function Profile({onSignOut}) {
     const handleSubmit = (evt) => {
         evt.preventDefault();
 
-        mainApi.editUser()
+        mainApi.editUser({name, email})
           .then(() => {
             setVisibleButton(false);
             setLastName(name);
@@ -53,7 +53,7 @@ function Profile({onSignOut}) {
     return (
         <section className="profile">
             <form className="profile__form" onSubmit={handleSubmit}>
-                <h3 className="profile__title">{`Привет, ${currentUser.name}!`}</h3>
+                <h3 className="profile__title">{`Привет, ${name}!`}</h3>
                 <div className="profile__inputs">
                     <p className="profile__text">Имя</p>
                     <div className="profile__area profile__area_type_name">

@@ -49,6 +49,37 @@ function Movies() {
     const [filmsShowed, setFilmsShowed] = useState(null);
     const [filmsWithTumbler, setFilmsWithTumbler] = useState([]);
     const [filmsShowedWithTumbler, setFilmsShowedWithTumbler] = useState([]);
+    
+    useEffect(() => {
+      setMoviesCount(getMoviesCount());
+      const handlerResize = () => setMoviesCount(getMoviesCount());
+      window.addEventListener('resize', handlerResize);
+  
+      return () => {
+        window.removeEventListener('resize', handlerResize);
+      };
+    }, []);
+  
+    function getMoviesCount() {
+      let countCards;
+      const clientWidth = document.documentElement.clientWidth;
+      const MoviesCountConfig = {
+        '1200': [12, 3],
+        '900': [9, 3],
+        '768': [8, 2],
+        '240': [5, 2],
+      };
+  
+      Object.keys(MoviesCountConfig)
+        .sort((a, b) => a - b)
+        .forEach((key) => {
+          if (clientWidth > +key) {
+            countCards = MoviesCountConfig[key];
+          }
+        });
+  
+      return countCards;
+    }
 
     async function handleGetMovies(inputSearch) {
       setFilmsTumbler(false);
@@ -102,38 +133,38 @@ function Movies() {
       setMovies(filterData);
     }
 
-    async function savedMoviesToggle(movie, favorite) {
-      if (favorite) {
-        const objFilm = {
-          image: MOVIES_URL + movie.image.url,
-          trailerLink: movie.trailerLink,
-          thumbnail:MOVIES_URL + movie.image.url,
-          movieId: movie.id,
-          country: movie.country,
-          director: movie.director,
-          duration: movie.duration,
-          year: movie.year,
-          description: movie.description,
-          nameRU: movie.nameRU,
-          nameEN: movie.nameEN,
-        };
+    async function savedMoviesToggle(movies, saved) {
+      if (saved) {
+        const objMovies = {
+          image: `${MOVIES_URL}${movies.image.url}`,
+          trailerLink: movies.trailerLink,
+          thumbnail: `${MOVIES_URL}${movies.image.url}`,
+          movieId: movies.id,
+          country: movies.country || 'Неизвестно',
+          director: movies.director,
+          duration: movies.duration,
+          year: movies.year,
+          description: movies.description,
+          nameRU: movies.nameRU,
+          nameEN: movies.nameEN,
+        }
         try {
-          await mainApi.addMovie(objFilm);
-          const newSaved = await mainApi.getMovies();
-          setSaveMovies(newSaved);
+          await mainApi.addMovie(objMovies)
+          const newSaved = await mainApi.getMovies()
+          setSaveMovies(newSaved)
         } catch (err) {
-          console.log(`${err}`)
+          console.log('Ошибка', err)
         }
       } else {
         try {
-          await mainApi.deleteMovie(movie.id);
-          const newSaved = await mainApi.getMovies();
-          setSaveMovies(newSaved);
+          await mainApi.deleteMovie(movies._id)
+          const newSaved = await mainApi.getMovies()
+          setSaveMovies(newSaved)
         } catch (err) {
-          console.log(`${err}`)
+          console.log('Ошибка', err)
         }
       }
-    }
+    }  
 
     useEffect(() => {
       mainApi
@@ -147,6 +178,7 @@ function Movies() {
 
         if (localStorageFilms) {
           const filterData = JSON.parse(localStorageFilms);
+          setFilmsShowed(filterData.splice(0, getMoviesCount()[0]));
           setMovies(filterData);
           setPreloader(false);
         }
@@ -180,7 +212,9 @@ function Movies() {
             {preloader && <Preloader />}
             {!preloader && movies !== null && saveMovies !== null && filmsShowed !== null && (
               <MoviesCardList 
-                movies={movies} 
+                /* movies={movies} */
+                movies={filmsShowed}
+                filmsRemains={movies}
                 handleMore={handleMore}
                 saveMovies={saveMovies}
                 savedMoviesToggle={savedMoviesToggle}

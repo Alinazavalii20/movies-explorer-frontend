@@ -34,6 +34,7 @@ function App() {
         if (res._id) {
           onLogin(formData);
         }
+        navigate('/movies');
       })
       .catch((err) => {console.log(`${err}`)}) 
   }
@@ -46,6 +47,7 @@ function App() {
           navigate('/movies');
           setIsLoggedIn(true);
         }
+        navigate('/movies');
       })
       .catch((err) => {console.log(`${err}`)})
   }
@@ -53,21 +55,32 @@ function App() {
   function onSignOut() {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
+    localStorage.removeItem('movies');
+    localStorage.removeItem('filmsTumbler');
+    localStorage.removeItem('filmsInputSearch');
+    localStorage.removeItem('savedFilms');
+    localStorage.removeItem('savedFilmsTumbler');
+    localStorage.removeItem('savedFilmsInputSearch');
     navigate("/");
   }
 
   //-------------Profile------------------------------------
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      Promise.all([mainApi.getUserInfo(), mainApi.getMovies()])
-        .then(([user, savedMovie]) => {
-          setCurrentUser(user);
-          
-        })
-        .catch((err) => console.log("ошибка получения данных: " + err));
-    }
-  }, [isLoggedIn]);
+  useEffect(() =>{
+    getUserInfo()
+  }, []);
+
+  function getUserInfo() {
+    mainApi.getUserInfo()
+      .then((data) => {
+        setCurrentUser(data);
+        setIsLoggedIn(true)
+      })
+      .catch((err) => console.log("ошибка получения данных: " + err))
+      .finally(() => {
+        setIsLoggedIn(false)
+      })
+  }
 
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
@@ -84,20 +97,6 @@ function App() {
       setIsTokenChecking(false)
     }
   }, []);
-  
-  function handleUpdateUser({name, email}) {
-    localStorage.getItem("jwt");
-    setIsLoggedIn(true);
-    mainApi.editUser(name, email)
-      .then(() => {
-          setCurrentUser({ ...currentUser, name, email })
-          setIsLoggedIn(false);
-        })
-      .catch((err) => {
-        console.log(err);
-        setIsLoggedIn(false);
-      });
-  };
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -154,7 +153,6 @@ function App() {
               <Header loggedIn={true} />
               <Profile 
                 onSignOut={onSignOut}
-                onEditProfile={handleUpdateUser}
               />
             </ProtectedRoute>
           }

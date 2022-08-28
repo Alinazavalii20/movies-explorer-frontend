@@ -47,10 +47,10 @@ function SavedMovies() {
     }
   }
 
-  async function savedMoviesToggle(movie, favorite) {
-    if (!favorite) {
+  async function savedMoviesToggle(movies, saved) {
+    if (!saved) {
       try {
-        await mainApi.deleteMovie(movie._id);
+        await mainApi.deleteMovie(movies._id);
         const newFilms = await mainApi.getMovies();
         setFilmsShowed(newFilms);
         setMovies(newFilms);
