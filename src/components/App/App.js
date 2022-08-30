@@ -119,7 +119,7 @@ function App() {
     navigate("/");
   }
 
-  function changeUserProfile({name, email}) {
+ /*  function changeUserProfile({name, email}) {
     const token = localStorage.getItem('jwt');
     mainApi
     .editUser(name, email, token)
@@ -127,7 +127,7 @@ function App() {
       setCurrentUser({ ...currentUser, name, email })
     })
     .catch((err) => console.log(err))
-  }
+  } */
 
   
   return (
@@ -185,7 +185,7 @@ function App() {
               <Header loggedIn={true} />
               <Profile 
                 onSignOut={onSignOut}
-                changeUserProfile={changeUserProfile}
+                /* changeUserProfile={changeUserProfile} */
               />
             </ProtectedRoute>
           }

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-//import { Link } from "react-router-dom";
 import './Profile.css';
 import CurrentUserContext from "../../context/CurrentUserContext";
 import { mainApi } from "../../utils/MainApi";
 
 
-function Profile({onSignOut, changeUserProfile}) {
+function Profile({onSignOut}) {
   const currentUser = React.useContext(CurrentUserContext);
     const [name, setName] = useState(currentUser.name || '');
     const [lastName, setLastName] = useState(currentUser.name || '');
@@ -27,8 +26,6 @@ function Profile({onSignOut, changeUserProfile}) {
           .catch((err) => {
             console.log(`Что-то пошло не так! ${err}`)
           })
-         
-        
     }
 
     function handleNameChange(evt) {
@@ -77,7 +74,7 @@ function Profile({onSignOut, changeUserProfile}) {
                     <p className="profile__text">E-mail</p>
                 </div>
 
-                <button className="profile__edit" onSubmit={handleSubmit}  disabled={!isVisibleButton}>Редактировать</button>
+                <button className="profile__edit" disabled={!isVisibleButton}>Редактировать</button>
                 <button to="/" className="profile__exit" onClick={onSignOut}>Выйти из аккаунта</button>
             </form>
         </section>
