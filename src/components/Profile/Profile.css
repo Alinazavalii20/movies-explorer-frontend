@@ -84,12 +84,16 @@
 
 .profile__edit{
     text-decoration: none;
+    border: none;
+    background-color: transparent;
+    color: #000000;
     font-weight: 400;
     font-size: 13px;
     line-height: 16px;
     display: flex;
     text-align: center;
     margin-bottom: 16px;
+    transition: opacity .2s linear;
 }
 
 .profile__edit:hover{
@@ -104,6 +108,9 @@
     line-height: 16px;
     text-align: center;
     color: #FF3055;
+    border: none;
+    background-color: transparent;
+    transition: opacity .2s linear;
 }
 
 .profile__exit:hover{

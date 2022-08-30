@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import './Profile.css';
 import CurrentUserContext from "../../context/CurrentUserContext";
 import { mainApi } from "../../utils/MainApi";
 
 
-function Profile({onSignOut}) {
-    const currentUser = React.useContext(CurrentUserContext);
+function Profile({onSignOut, changeUserProfile}) {
+  const currentUser = React.useContext(CurrentUserContext);
     const [name, setName] = useState(currentUser.name || '');
     const [lastName, setLastName] = useState(currentUser.name || '');
     const [email, setEmail] = useState(currentUser.email);
@@ -21,11 +21,14 @@ function Profile({onSignOut}) {
             setVisibleButton(false);
             setLastName(name);
             setLastEmail(email);
+            
             console.log('Данные успешно изменены')
           })
           .catch((err) => {
             console.log(`Что-то пошло не так! ${err}`)
           })
+         
+        
     }
 
     function handleNameChange(evt) {
@@ -59,7 +62,7 @@ function Profile({onSignOut}) {
                     <div className="profile__area profile__area_type_name">
                         <input 
                         className="profile__info" 
-                        value={name ? name : ''} 
+                        value={name} 
                         onChange={handleNameChange}
                         required />
                     </div>
@@ -67,15 +70,15 @@ function Profile({onSignOut}) {
                     <div className="profile__area profile__area_type_email">
                         <input 
                         className="profile__info" 
-                        value={email ? email : ''} 
+                        value={email} 
                         onChange={handleEmailChange}
                         required />
                     </div>
                     <p className="profile__text">E-mail</p>
                 </div>
 
-                <Link to="/profile" className="profile__edit" onSubmit={handleSubmit} disabled={!isVisibleButton}>Редактировать</Link>
-                <Link to="/" className="profile__exit" onClick={onSignOut}>Выйти из аккаунта</Link>
+                <button className="profile__edit" onSubmit={handleSubmit}  disabled={!isVisibleButton}>Редактировать</button>
+                <button to="/" className="profile__exit" onClick={onSignOut}>Выйти из аккаунта</button>
             </form>
         </section>
     );

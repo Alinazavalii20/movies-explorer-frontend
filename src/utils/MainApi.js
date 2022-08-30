@@ -32,7 +32,7 @@ export default class MainApi {
           headers: this._headers,
           body: JSON.stringify({
             name: user.name,
-            about: user.email,
+            email: user.email,
         }),
         })
            .then(onResponce)

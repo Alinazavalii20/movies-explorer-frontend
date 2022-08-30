@@ -26,32 +26,16 @@ function App() {
 
   const navigate = useNavigate();
 
-  //-------------Profile------------------------------------
-  
-  /* useEffect(() =>{
-    getUserInfo()
-  }, []);
-
-  function getUserInfo() {
-    mainApi.getUserInfo()
-      .then((data) => {
-        setCurrentUser(data);
-        setIsLoggedIn(true)
-      })
-      .catch((err) => console.log("ошибка получения данных: " + err))
-      .finally(() => {
-        setIsLoggedIn(false)
-      })
-  } */
-
 //--------------Auth and register-------------------------
 
   function onRegister(formData) {
     auth.register(formData)
       .then((res) => {
         if (res._id) {
-          onLogin(formData);
+          onLogin(formData); 
+          
         }
+        setIsLoggedIn(true);
         navigate('/movies');
       })
       .catch((err) => {console.log(`${err}`)}) 
@@ -79,7 +63,6 @@ function App() {
           if (data) {
             setCurrentUser(data.user);
             setIsLoggedIn(true);
-            
             navigate('/movies');
           }
         })
@@ -135,6 +118,17 @@ function App() {
     localStorage.removeItem('savedFilmsInputSearch');
     navigate("/");
   }
+
+  function changeUserProfile({name, email}) {
+    const token = localStorage.getItem('jwt');
+    mainApi
+    .editUser(name, email, token)
+    .then(() => {
+      setCurrentUser({ ...currentUser, name, email })
+    })
+    .catch((err) => console.log(err))
+  }
+
   
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -191,6 +185,7 @@ function App() {
               <Header loggedIn={true} />
               <Profile 
                 onSignOut={onSignOut}
+                changeUserProfile={changeUserProfile}
               />
             </ProtectedRoute>
           }
