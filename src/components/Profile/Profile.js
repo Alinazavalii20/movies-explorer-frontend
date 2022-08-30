@@ -4,7 +4,7 @@ import CurrentUserContext from "../../context/CurrentUserContext";
 import { mainApi } from "../../utils/MainApi";
 
 
-function Profile({onSignOut}) {
+function Profile({onSignOut, setCurrentUser}) {
   const currentUser = React.useContext(CurrentUserContext);
     const [name, setName] = useState(currentUser.name || '');
     const [lastName, setLastName] = useState(currentUser.name || '');
@@ -16,8 +16,9 @@ function Profile({onSignOut}) {
         evt.preventDefault();
 
         mainApi.editUser({name, email})
-          .then(() => {
+          .then((res) => {
             setVisibleButton(false);
+            setCurrentUser(res.user)
             setLastName(name);
             setLastEmail(email);
             
@@ -74,8 +75,8 @@ function Profile({onSignOut}) {
                     <p className="profile__text">E-mail</p>
                 </div>
 
-                <button className="profile__edit" disabled={!isVisibleButton}>Редактировать</button>
-                <button to="/" className="profile__exit" onClick={onSignOut}>Выйти из аккаунта</button>
+                <button  type='submit' className="profile__edit" disabled={!isVisibleButton}>Редактировать</button>
+                <button type='button' className="profile__exit" onClick={onSignOut}>Выйти из аккаунта</button>
             </form>
         </section>
     );

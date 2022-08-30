@@ -46,6 +46,9 @@ function App() {
       .then(({ token }) => {
         if (token) {
           localStorage.setItem("jwt", token);
+          handleTokenCheck();
+          /* setIsLoggedIn(true);
+          navigate('/movies'); */
         }
         setIsLoggedIn(true);
         navigate('/movies');
@@ -79,7 +82,7 @@ function App() {
       Promise.all([mainApi.getUserInfo()])
       .then(([user]) => {
         setCurrentUser(user);
-        //console.log(user);
+        console.log(user);
       })
       .catch((err) => console.log("ошибка получения данных: " + err));
     }
@@ -118,17 +121,6 @@ function App() {
     localStorage.removeItem('savedFilmsInputSearch');
     navigate("/");
   }
-
- /*  function changeUserProfile({name, email}) {
-    const token = localStorage.getItem('jwt');
-    mainApi
-    .editUser(name, email, token)
-    .then(() => {
-      setCurrentUser({ ...currentUser, name, email })
-    })
-    .catch((err) => console.log(err))
-  } */
-
   
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -185,6 +177,7 @@ function App() {
               <Header loggedIn={true} />
               <Profile 
                 onSignOut={onSignOut}
+                setCurrentUser={setCurrentUser}
                 /* changeUserProfile={changeUserProfile} */
               />
             </ProtectedRoute>
