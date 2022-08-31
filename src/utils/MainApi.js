@@ -64,6 +64,10 @@ export default class MainApi {
          })
            .then(onResponce)
     }
+
+    updateToken() {
+      this._headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+    }
 }
 
 

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 
@@ -25,56 +25,6 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   const navigate = useNavigate();
-
-//--------------Auth and register-------------------------
-
-  function onRegister(formData) {
-    auth.register(formData)
-      .then((res) => {
-        if (res._id) {
-          onLogin(formData); 
-          
-        }
-        setIsLoggedIn(true);
-        navigate('/movies');
-      })
-      .catch((err) => {console.log(`${err}`)}) 
-  }
-
-  function onLogin(formData) {
-    auth.authorize(formData)
-      .then(({ token }) => {
-        if (token) {
-          localStorage.setItem("jwt", token);
-          handleTokenCheck();
-          /* setIsLoggedIn(true);
-          navigate('/movies'); */
-        }
-        setIsLoggedIn(true);
-        navigate('/movies');
-      })
-      .catch((err) => {console.log(`${err}`)})
-  }
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleTokenCheck = () => {
-    const token = localStorage.getItem("jwt");
-    if (token) {
-      auth
-        .checkToken(token)
-        .then((data) => {
-          if (data) {
-            setCurrentUser(data.user);
-            setIsLoggedIn(true);
-            navigate('/movies');
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          localStorage.removeItem("jwt");
-        });
-    }
-  };
    
   //-------------Profile------------------------------------
   useEffect(() => {
@@ -88,26 +38,60 @@ function App() {
     }
   }, [isLoggedIn]);
 
-  useCallback(() => {
-    handleTokenCheck()
-  }, [handleTokenCheck]);
 
-
+//--------------Auth and register-------------------------
   useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
+    handlTokenCheck()
+  }, [])
 
-    if(jwt) {
-      auth.checkToken()
+  // проверка токена
+  function handlTokenCheck() {
+    const token = localStorage.getItem('token')
+
+    if(token) {
+      auth.checkToken(token)
         .then((user) => {
-          setIsLoggedIn(true);
-          setIsTokenChecking(false)
-          setCurrentUser(user);
+          if(user) {
+            setCurrentUser(user)
+            setIsTokenChecking(false);
+            setIsLoggedIn(true)
+          } else {
+            setIsLoggedIn(false)
+          }
         })
-        .catch((err) => console.log("ошибка получения данных: " + err));
-    } else {
-      setIsTokenChecking(false)
-    }
-  }, []);
+        .catch((err) => {
+          console.log('Ошибка при провеке токена ', err);
+        });
+      }
+  };
+
+  // регистрация
+  function onRegister(password, email, name) {
+    auth.register(password, email, name)
+      .then(user => {
+        if(user) {
+          onLogin(password, user.email)
+        }
+      })
+      .catch((err) => console.log("ошибка получения данных: " + err));
+  }
+
+  // логирование
+  function onLogin(password, email) {
+    auth.authorize(password, email)
+      .then(res => {
+        if(res.token) {
+          localStorage.setItem('token', res.token)
+          mainApi.updateToken()
+          setIsLoggedIn(true)
+          handlTokenCheck()
+         navigate('/movies')
+        } else {
+          console.log("ошибка получения данных:")
+        }
+      })
+      .catch((err) => console.log('Ошибка при провеке авторизации ', err))
+  };
 
   function onSignOut() {
     localStorage.removeItem("jwt");
@@ -151,8 +135,7 @@ function App() {
           element={
             <ProtectedRoute isLoggedIn={isLoggedIn} isTokenChecking={isTokenChecking} >
               <Header loggedIn={true} />
-              <SavedMovies
-                   
+              <SavedMovies   
               />
               <Footer />
             </ProtectedRoute>
@@ -178,7 +161,6 @@ function App() {
               <Profile 
                 onSignOut={onSignOut}
                 setCurrentUser={setCurrentUser}
-                /* changeUserProfile={changeUserProfile} */
               />
             </ProtectedRoute>
           }
