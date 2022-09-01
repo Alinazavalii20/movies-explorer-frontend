@@ -8,6 +8,7 @@ function Login({onLogin}) {
 
   const [inputValues, setInputValues] = useState({});
   const [errors, setErrors] = useState({});
+  const [isValid, setIsValid] = useState(false);
 
   const handleChange = (evt) => {
     const target = evt.target;
@@ -24,6 +25,7 @@ function Login({onLogin}) {
 
     setInputValues({ ...inputValues, [name]: value });
     setErrors({ ...errors, [name]: target.validationMessage });
+    setIsValid(target.closest('form').checkValidity());
   };
 
   const handleSubmit = (evt) => {
@@ -45,30 +47,31 @@ function Login({onLogin}) {
             <p className="login__name">E-mail</p>
             <input
               type="email"
-              className="login__input"
+              className={`form__field ${errors.email ? 'form__field_color-error' : ''}`}
               name="email"
               placeholder="pochta@yandex.ru"
               value={inputValues.email || ''}
               onChange={handleChange}
               required
             />
+            <p className={`form__error ${errors.email ? 'form__error-display' : ''}`}>{errors.email}</p>
 
             <p className="login__name">Пароль</p>
             <input
               type="password"
-              className="login__input"
+              className={`form__field ${errors.password ? 'form__field_color-error' : ''}`}
               name="password"
               placeholder="Пароль"
               value={inputValues.password || ''}
               onChange={handleChange}
               required
             />
-
-            <span id="password-error" className="input-error password-input-error" />
+            <p className={`form__error ${errors.password ? 'form__error-display' : ''}`}>{errors.password}</p>
 
             <button
-              className="login__button"
+              className={`form__button ${isValid ? "" : "form__button_disabled"}`}
               type="submit"
+              disabled={!isValid ? true : ''}
               onSubmit={handleSubmit}>
               Войти
             </button>

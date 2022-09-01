@@ -7,6 +7,7 @@ import logo from '../../images/logo.svg';
 function Register({ onRegister }) {
 
   const [inputValues, setInputValues] = useState({});
+  const [isValid, setIsValid] = useState(false);
   const [errors, setErrors] = useState({});
 
   const handleChange = (evt) => {
@@ -24,6 +25,7 @@ function Register({ onRegister }) {
 
     setInputValues({ ...inputValues, [name]: value });
     setErrors({ ...errors, [name]: target.validationMessage });
+    setIsValid(target.closest('form').checkValidity());
   };
 
   const handleSubmit = (evt) => {
@@ -46,7 +48,7 @@ function Register({ onRegister }) {
             <p className="register__name">Имя</p>
             <input
               type="name"
-              className="register__input"
+              className="form__field"
               name="name"
               placeholder="Ваше имя"
               value={inputValues.name || ''}
@@ -57,29 +59,31 @@ function Register({ onRegister }) {
             <p className="register__name">E-mail</p>
             <input
               type="email"
-              className="register__input"
+              className={`form__field ${errors.email ? 'form__field_color-error' : ''}`}
               name="email"
               placeholder="pochta@yandex.ru"
               value={inputValues.email || ''}
               onChange={handleChange}
               required
             />
+            <p className={`form__error ${errors.email ? 'form__error-display' : ''}`}>{errors.email}</p>
 
             <p className="register__name">Пароль</p>
             <input
               type="password"
-              className="register__input"
+              className={`form__field ${errors.password ? 'form__field_color-error' : ''}`}
               name="password"
               placeholder="Пароль"
               value={inputValues.password || ''}
               onChange={handleChange}
               required
             />
-            <span id="password-error" className="input-error password-input-error" />
+             <p className={`form__error ${errors.password ? 'form__error-display' : ''}`}>{errors.password}</p>
 
             <button
-              className="register__button"
+              className={`form__button ${isValid ? "" : "form__button_disabled"}`}
               type="submit"
+              disabled={!isValid ? true : ''}
               onSubmit={handleSubmit}>
               Зарегистрироваться
             </button>

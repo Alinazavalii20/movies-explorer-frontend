@@ -1,9 +1,10 @@
 import { MAIN_URL } from "./constans";
 
 function getResponse(res) {
-    return res.status === '200' || '400' || '401'
-        ? res.json()
-        : Promise.reject(new Error(`Ошибка api: ${res.status}`));
+    if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
 }
 
 export const register = ({name, email, password }) => {

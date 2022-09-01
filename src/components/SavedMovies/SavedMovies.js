@@ -4,7 +4,9 @@ import { mainApi } from "../../utils/MainApi";
 import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 
-function SavedMovies() {
+import { addErrorMovies, deleteErrorMovies, severError } from '../../utils/constans'
+
+function SavedMovies({openPopup}) {
   const [movies, setMovies] = useState([]);
   const [preloader, setPreloader] = useState(false);
   const [filmsTumbler, setFilmsTumbler] = useState(false);
@@ -12,8 +14,9 @@ function SavedMovies() {
   const [filmsShowed, setFilmsShowed] = useState([]);
   const [filmsShowedWithTumbler, setFilmsShowedWithTumbler] = useState([]);
   const [filmsWithTumbler, setFilmsWithTumbler] = useState([]);
+  const [errorText, setErrorText] = useState('');
 
-  async function handleGetMoviesTumbler(tumbler) {
+  async function handleGetMoviesTumbler(tumbler) { 
     let filterDataShowed = [];
     let filterData = [];
 
@@ -32,6 +35,7 @@ function SavedMovies() {
 
 
   async function handleGetMovies(inputSearch, tumbler) {
+    setErrorText('');
     setPreloader(true);
     try {
       const data = movies;
@@ -41,7 +45,7 @@ function SavedMovies() {
       setFilmsShowed(filterData);
     } catch (err) {
       setMovies([]);
-
+      setErrorText(addErrorMovies);
     } finally {
       setPreloader(false);
     }
@@ -56,6 +60,7 @@ function SavedMovies() {
         setMovies(newFilms);
       } catch (err) {
         console.log(`${err}`)
+        openPopup(deleteErrorMovies);
       }
     }
   }
@@ -71,7 +76,6 @@ function SavedMovies() {
         setFilmsTumbler(localStorageFilmsTumbler === 'true');
       }
 
-
     } else {
       try {
         const data = await mainApi.getMovies();
@@ -79,9 +83,10 @@ function SavedMovies() {
         setFilmsShowed(data);
       } catch (err) {
         console.log(`${err}`)
+        openPopup(severError);
       }
     }
-  }, []);
+  }, [openPopup]);
 
   return(
       <div className="saved-movies">
@@ -91,6 +96,7 @@ function SavedMovies() {
           filmsInputSearch={filmsInputSearch} 
           handleGetMoviesTumbler={handleGetMoviesTumbler}/>
           {preloader && <Preloader />}
+          {errorText && <div className="saved-movies__text-error">{errorText}</div>}
           <MoviesCardList
              filmsRemains={[]} 
              savedMoviesToggle={savedMoviesToggle} 

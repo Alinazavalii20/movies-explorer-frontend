@@ -14,15 +14,24 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 
 import { mainApi } from '../../utils/MainApi';
 import * as auth from '../../utils/AuthApi';
+import { registerUserSuccessful, registerUserError, authError} from '../../utils/constans';
 
 import CurrentUserContext from '../../context/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
 function App() {
 
   const [currentUser, setCurrentUser] = useState({});
   const [isTokenChecking, setIsTokenChecking] = useState(true)
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
+  /* const [infoTooltipStatus, setInfoTooltipStatus] = useState(false);
+  const [isInfoTooltipOpen, setisInfoTooltipOpen] = useState(false); */
+
+  const [isOpenPopup, setIsOpenPopup] = useState(false);
+  const [popupTitle, setPopupTitle] = useState('');
+ 
 
   const navigate = useNavigate();
    
@@ -68,12 +77,18 @@ function App() {
   // регистрация
   function onRegister(password, email, name) {
     auth.register(password, email, name)
-      .then(user => {
+      .then((user) => {
         if(user) {
+          setPopupTitle(registerUserSuccessful);
+          setIsOpenPopup(true);
           onLogin(password, user.email)
-        }
+         }
       })
-      .catch((err) => console.log("ошибка получения данных: " + err));
+      .catch((err) => {
+        setPopupTitle(registerUserError);
+        setIsOpenPopup(true);
+        console.log("ошибка получения данных: " + err)
+    });
   }
 
   // логирование
@@ -87,10 +102,14 @@ function App() {
           handlTokenCheck()
          navigate('/movies')
         } else {
-          console.log("ошибка получения данных:")
+          console.log("ошибка получения данных:");
         }
       })
-      .catch((err) => console.log('Ошибка при провеке авторизации ', err))
+      .catch((err) => {
+        setPopupTitle(authError);
+        setIsOpenPopup(true);
+        console.log('Ошибка при провеке авторизации ', err)
+      })
   };
 
   function onSignOut() {
@@ -104,6 +123,31 @@ function App() {
     localStorage.removeItem('savedFilmsTumbler');
     localStorage.removeItem('savedFilmsInputSearch');
     navigate("/");
+  }
+
+  useEffect(() => {
+    if (setIsOpenPopup) {
+      function handleEsc(evt) {
+        if (evt.key === 'Escape') {
+          closePopups();
+        }
+      }
+
+      document.addEventListener('keydown', handleEsc);
+      return () => {
+        document.removeEventListener('keydown', handleEsc);
+      }
+    }
+  }, [isOpenPopup]);
+
+  function closePopups() {
+    setIsOpenPopup(false);
+    setPopupTitle('');
+  }
+
+  function openPopup(textError) {
+    setPopupTitle(textError);
+    setIsOpenPopup(true);
   }
   
   return (
@@ -161,6 +205,7 @@ function App() {
               <Profile 
                 onSignOut={onSignOut}
                 setCurrentUser={setCurrentUser}
+                openPopup={openPopup}
               />
             </ProtectedRoute>
           }
@@ -172,6 +217,12 @@ function App() {
           }
         />
       </Routes>
+
+      <InfoTooltip
+          isOpen={isOpenPopup}
+          onClose={closePopups}
+          text={popupTitle}
+        />
     </div>
     </CurrentUserContext.Provider>
   );

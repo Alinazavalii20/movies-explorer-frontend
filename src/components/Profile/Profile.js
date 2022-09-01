@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import './Profile.css';
 import CurrentUserContext from "../../context/CurrentUserContext";
 import { mainApi } from "../../utils/MainApi";
+import { profileSuccessful, profileError} from '../../utils/constans'
 
 
-function Profile({onSignOut, setCurrentUser}) {
+function Profile({onSignOut, setCurrentUser, openPopup}) {
   const currentUser = React.useContext(CurrentUserContext);
     const [name, setName] = useState(currentUser.name || '');
     const [lastName, setLastName] = useState(currentUser.name || '');
@@ -21,10 +22,12 @@ function Profile({onSignOut, setCurrentUser}) {
             setCurrentUser(res.user)
             setLastName(name);
             setLastEmail(email);
+            openPopup(profileSuccessful)
             
             console.log('Данные успешно изменены')
           })
           .catch((err) => {
+            openPopup(profileError);
             console.log(`Что-то пошло не так! ${err}`)
           })
     }

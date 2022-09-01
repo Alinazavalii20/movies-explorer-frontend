@@ -8,8 +8,9 @@ import Preloader from "../Preloader/Preloader";
 import { MOVIES_URL } from "../../utils/constans";
 import * as moviesApi from '../../utils/MoviesApi';
 import { mainApi } from "../../utils/MainApi";
+import { addErrorMovies, deleteErrorMovies, searchErrorMovies, messageErrorMovies } from '../../utils/constans';
 
-function Movies() {
+function Movies({ openPopup }) {
 
   const [movies, setMovies] = useState([]);
   const [saveMovies, setSaveMovies] = useState(null);
@@ -49,6 +50,7 @@ function Movies() {
     const [filmsShowed, setFilmsShowed] = useState(null);
     const [filmsWithTumbler, setFilmsWithTumbler] = useState([]);
     const [filmsShowedWithTumbler, setFilmsShowedWithTumbler] = useState([]);
+    const [errorText, setErrorText] = useState('');
     
     useEffect(() => {
       setMoviesCount(getMoviesCount());
@@ -86,6 +88,7 @@ function Movies() {
       localStorage.setItem('filmsTumbler', false);
   
       if (!inputSearch) {
+        setErrorText(searchErrorMovies);
         return false;
       }
   
@@ -104,6 +107,7 @@ function Movies() {
         setFilmsWithTumbler(filterData);
       } catch (err) {
         console.log(`${err}`)
+        setErrorText(messageErrorMovies);
 
         setMovies([]);
         localStorage.removeItem('movies');
@@ -153,7 +157,8 @@ function Movies() {
           const newSaved = await mainApi.getMovies()
           setSaveMovies(newSaved)
         } catch (err) {
-          console.log('Ошибка', err)
+          console.log('Ошибка', err);
+          openPopup(addErrorMovies);
         }
       } else {
         try {
@@ -162,6 +167,7 @@ function Movies() {
           setSaveMovies(newSaved)
         } catch (err) {
           console.log('Ошибка', err)
+          openPopup(deleteErrorMovies);
         }
       }
     }  
@@ -172,7 +178,10 @@ function Movies() {
         .then((data) => {
           setSaveMovies(data);
         })
-        .catch((err) => {console.log(`${err}`)});
+        .catch((err) => {
+          console.log(`${err}`);
+          openPopup(`Ошибка сервера ${err}`);
+        });
 
         const localStorageFilms = localStorage.getItem('movies');
 
@@ -193,7 +202,7 @@ function Movies() {
         if (localStorageFilmsInputSearch) {
           setFilmsInputSearch(localStorageFilmsInputSearch);
         }
-    }, [])
+    }, [openPopup])
 
     function handleMore() {
       const spliceFilms = movies;
@@ -210,6 +219,7 @@ function Movies() {
             filmsInputSearch={filmsInputSearch} 
             handleGetMoviesTumbler={handleGetMoviesTumbler}/>
             {preloader && <Preloader />}
+            {errorText && <div className="movies__text-error">{errorText}</div>}
             {!preloader && movies !== null && saveMovies !== null && filmsShowed !== null && (
               <MoviesCardList 
                 /* movies={movies} */
