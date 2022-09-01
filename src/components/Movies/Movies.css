@@ -1,0 +1,13 @@
+.movies {
+    flex: 1 0 auto;
+}
+
+.movies__text-error{
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+    color: #073042;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+}

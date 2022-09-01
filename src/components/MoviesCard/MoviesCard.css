@@ -1,0 +1,131 @@
+.movie{
+    background: #FDFDFD;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+    border-radius: 6px;
+}
+
+.movie__element{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 18px;
+}
+
+.movie__title{
+    margin-left: 18px;
+    width: 240px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+}
+
+.movie__button {
+    margin: 18px 130px;
+    padding: 0;   
+    transition: opacity .2s linear;  
+}
+
+.movie__button_delete{
+    background: #F9F9F9;
+    border-radius: 30px;
+    border: none;
+    height: 29px;
+    width: 100px;
+    background-image: url(../../images/icon__delete.svg);
+    background-repeat: no-repeat;
+    background-size: 7px;
+    background-position: center;
+    cursor: pointer;
+}
+
+.movie__button_save{
+    border: none;
+    border-radius: 30px;
+    font-size: 12px;
+    line-height: 11px;
+    text-align: center;
+    height: 29px;
+    width: 100px;
+    cursor: pointer;
+}
+
+.movie__button_save-active{
+    background: #FF3055;
+    border-radius: 30px;
+    border: none;
+    height: 29px;
+    width: 100px;
+    background-image: url(../../images/icon__save.svg);
+    background-repeat: no-repeat;
+    background-size: 8px;
+    background-position: center;
+    color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
+  
+.movie__button:hover {
+    opacity: .6;
+}
+  
+.movie__image{
+    width: 360px;
+    height: 200px;
+}
+
+.movie__duration {
+    padding-top: 18px;
+    margin: 0;
+    color: #A0A0A0;
+    font-size: 11px;
+    line-height: 13px;
+}
+
+.movie__link{
+    transition: opacity .2s linear; 
+    cursor: pointer;
+}
+
+.movie__link:hover{
+    opacity: .6;
+}
+
+@media screen and (max-width: 800px) {
+    .movie__title{
+        margin-left: 12px;
+    }
+
+    .movie__image{
+        width: 342px;
+        height: 190px;
+    }
+
+    .movie__button{
+        margin: 18px 121px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .movie__title{
+        margin-left: 14px;
+        font-size: 12px;
+        width: 200px;
+    }
+
+    .movie__image{
+        width: 300px;
+        height: 168px;
+    }
+
+    .movie__element{
+        margin-right: 14px;
+    }
+
+    .movie__duration {
+        padding-top: 15px;
+        font-size: 10px;
+    }
+
+    .movie__button{
+        margin: 14px 100px;
+    }
+}
